@@ -12,7 +12,7 @@ def inicjalizacjaOkienka():
 
 
 def screenIni(root):
-    # Tworzymy trzy Label, w których będą wyświetlane ostatnie wyniki
+   
     screen = [tk.Label(root, width=65, bg="#DBE3DE", anchor='w', borderwidth=2) for i in range(3)]
     root.configure(bg='light grey')
     for i in range(len(screen)):
@@ -21,10 +21,10 @@ def screenIni(root):
 
 
 def dataAreaIni(root, ekran):
-    # Pole do wprowadzania wyrażeń
+   
     dataArea = tk.Entry(root, borderwidth=0, highlightcolor='white', highlightbackground='white')
     dataArea.grid(row=len(ekran), columnspan=6, ipady=15, ipadx=140)
-    # Pole info wyświetlające ostatnie obliczenie
+    
     info = tk.Label(root, text="Ostatnie wyrażenie:", width=65, bg="#DBE3DE", anchor='w', borderwidth=2)
     info.grid(row=len(ekran) + 1, columnspan=6, ipady=15, ipadx=1)
     return dataArea, info
@@ -61,16 +61,15 @@ def oblicz(dataArea, info, results, screen):
         dataArea.delete(0, tk.END)
         dataArea.insert(tk.END, result)
 
-        # Aktualizacja listy wyników
         results.insert(0, f"{expression} = {result}")
         if len(results) > 3:  # Jeśli mamy więcej niż 3 wyniki, usuń najstarszy
             results.pop()
 
-        # Aktualizacja Label z ostatnimi trzema wynikami
+       
         for i in range(min(3, len(results))):
             screen[i].config(text=results[i])
 
-        # Ustawienie tekstu w polu info na ostatnie wyrażenie
+      
         info.config(text=f"Ostatnie wyrażenie: {expression} = {result}")
     except:
         dataArea.delete(0, tk.END)
@@ -99,7 +98,7 @@ if __name__ == '__main__':
     screen = screenIni(root)
     dataArea, info = dataAreaIni(root, screen)
 
-    # Lista przechowująca ostatnie wyniki obliczeń
+    
     results = []
 
     keys = KeysIni(root, screen, dataArea, info, results)
